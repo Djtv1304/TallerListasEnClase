@@ -2,10 +2,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TallerInterface {
+public class TallerInterface extends JFrame {
 
     private JTabbedPane tabbedPane1;
-    private JPanel JPanelPrincipal;
+    public JPanel JPanelPrincipal;
     private JButton agregarLibroButton;
     private JTextField textFieldNombreLibro;
     private JTextField textFieldNumPag;
