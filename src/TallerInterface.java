@@ -26,13 +26,16 @@ public class TallerInterface extends JFrame {
         quemarLibrosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Libro L1 = new Libro("Primer libro",10);
-                Libro L2 = new Libro("Segundo libro",20);
-                Libro L3 = new Libro("Tercer libro",40);
+
+                Libro L1 = new Libro("Primer libro","Primera Editorial","Primer Volumen",1,10);
+                Libro L2 = new Libro("Segundo libro","Segunda Editorial","Segundo Volumen",2,20);
+                Libro L3 = new Libro("Tercer libro","Tercera Editorial","Tercer Volumen",3,40);
 
                 Biblioteca.agregarLibro(L1);
                 Biblioteca.agregarLibro(L2);
                 Biblioteca.agregarLibro(L3);
+
+                JOptionPane.showMessageDialog(null,"Datos quemados correctamente");
 
             }
         });
@@ -40,8 +43,9 @@ public class TallerInterface extends JFrame {
         agregarLibroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Libro L1 = new Libro(textFieldNombreLibro.getText(), Integer.parseInt(textFieldNumPag.getText()));
+                Libro L1 = new Libro(textFieldNombreLibro.getText(),"Editorial Ingresada","Volumen Ingresado",5, Integer.parseInt(textFieldNumPag.getText()));
                 Biblioteca.agregarLibro(L1);
+                JOptionPane.showMessageDialog(null,"Libro agregado correctamente");
             }
         });
 
@@ -51,17 +55,23 @@ public class TallerInterface extends JFrame {
                 if (!textFieldEliminarPorNombre.getText().equals("")) {
                     boolean resultado = Biblioteca.eliminarPorNombre(textFieldEliminarPorNombre.getText());
                     if (resultado) {
-                        JOptionPane.showMessageDialog(null,"Eliminado correctamente");
+                        JOptionPane.showMessageDialog(null,"Libro eliminado correctamente\n" +
+                                "Recuerde calcular nuevamente el numero total de paginas");
                     } else {
                         JOptionPane.showMessageDialog(null,"Ingrese un nombre valido");
                     }
+                    textFieldEliminarPorNombre.setText("");
+                    textFieldEliminarPorID.setText("");
                 } else {
                     boolean resultado = Biblioteca.eliminarPorId(Integer.parseInt(textFieldEliminarPorID.getText()));
                     if (resultado) {
-                        JOptionPane.showMessageDialog(null,"Eliminado correctamente");
+                        JOptionPane.showMessageDialog(null,"Libro eliminado correctamente\n" +
+                                "Recuerde calcular nuevamente el numero total de paginas");
                     } else {
-                        JOptionPane.showMessageDialog(null,"Ingrese un nombre valido");
+                        JOptionPane.showMessageDialog(null,"Ingrese un ID valido");
                     }
+                    textFieldEliminarPorID.setText("");
+                    textFieldEliminarPorNombre.setText("");
                 }
             }
         });
@@ -73,17 +83,31 @@ public class TallerInterface extends JFrame {
                 if (!textFieldBuscarPorNombre.getText().equals("")) {
                     Libro LibroEncontrado = Biblioteca.buscarPorNombre(textFieldBuscarPorNombre.getText());
                     if (LibroEncontrado != null) {
-                        JOptionPane.showMessageDialog(null,"Encontrado correctamente");
+                        JOptionPane.showMessageDialog(null,"Nombre del libro: " + LibroEncontrado.getNombre() + "\n"+
+                        "Editorial del libro: " + LibroEncontrado.getEditorial() + "\n"+
+                        "Volumen del libro: " + LibroEncontrado.getVolumen() + "\n"+
+                        "Numero de Edicion: " + LibroEncontrado.getNumeroEdicion() + "\n"+
+                        "ID Libro: " + LibroEncontrado.getIdLibro() + "\n"+
+                        "Numero de paginas: " + LibroEncontrado.getNumeroPaginas() + "\n");
                     } else {
                         JOptionPane.showMessageDialog(null,"Ingrese un nombre valido");
                     }
+                    textFieldBuscarPorNombre.setText("");
+                    textFieldBuscarPorID.setText("");
                 } else {
                     Libro LibroEncontrado = Biblioteca.buscarPorId(Integer.parseInt(textFieldBuscarPorID.getText()));
                     if (LibroEncontrado != null) {
-                        JOptionPane.showMessageDialog(null,"Encontrado correctamente");
+                        JOptionPane.showMessageDialog(null,"Nombre del libro: " + LibroEncontrado.getNombre() + "\n"+
+                                "Editorial del libro: " + LibroEncontrado.getEditorial() + "\n"+
+                                "Volumen del libro: " + LibroEncontrado.getVolumen() + "\n"+
+                                "Numero de Edicion: " + LibroEncontrado.getNumeroEdicion() + "\n"+
+                                "ID Libro: " + LibroEncontrado.getIdLibro() + "\n"+
+                                "Numero de paginas: " + LibroEncontrado.getNumeroPaginas()+"\n");
                     } else {
-                        JOptionPane.showMessageDialog(null,"Ingrese un nombre valido");
+                        JOptionPane.showMessageDialog(null,"Ingrese un ID valido");
                     }
+                    textFieldBuscarPorNombre.setText("");
+                    textFieldBuscarPorID.setText("");
                 }
 
             }
