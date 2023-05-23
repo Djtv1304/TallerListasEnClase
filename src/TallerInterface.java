@@ -44,8 +44,11 @@ public class TallerInterface extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Libro L1 = new Libro(textFieldNombreLibro.getText(),"Editorial Ingresada","Volumen Ingresado",5, Integer.parseInt(textFieldNumPag.getText()));
-                Biblioteca.agregarLibro(L1);
-                JOptionPane.showMessageDialog(null,"Libro agregado correctamente");
+                boolean status = Biblioteca.agregarLibro(L1);
+                if (status) {
+                    JOptionPane.showMessageDialog(null,"Libro agregado correctamente");
+                }
+
             }
         });
 

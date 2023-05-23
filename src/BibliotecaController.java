@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,8 +14,17 @@ public class BibliotecaController {
         return listaLibros;
     }
 
-    public void agregarLibro(Libro libro) {
-        listaLibros.add(libro);
+    public boolean agregarLibro(Libro libro) {
+        boolean estado;
+        Libro LibroUnico = buscarPorNombre(libro.getNombre());
+        if (LibroUnico == null) {
+            listaLibros.add(libro);
+            estado = true;
+        } else {
+            JOptionPane.showMessageDialog(null,"Un libro con este nombre ya se encuentra registrado");
+            estado = false;
+        }
+        return estado;
     }
 
     public Libro buscarPorNombre(String nombreLibro) {

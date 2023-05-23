@@ -3,7 +3,7 @@ public class Libro {
     private String editorial;
     private String volumen;
     private int NumeroEdicion;
-    private static int contadorLibros = 0;  // Variable estática para contar el número de libros
+    private static int contadorLibros = 0;  // Cuento el numero de libros
     private int idLibro;  // ID del libro
     private int numeroPaginas;  // Número de páginas del libro
 
@@ -44,7 +44,4 @@ public class Libro {
         return numeroPaginas;
     }
 
-    public void setNumeroPaginas(int numeroPaginas) {
-        this.numeroPaginas = numeroPaginas;
-    }
 }
