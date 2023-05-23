@@ -93,22 +93,24 @@ public class BibliotecaController {
         return paginasActuales + paginasRestantes;
     }
 
-    public boolean eliminarPorId(int idLibro) {
+    public Libro eliminarPorId(int idLibro) {
         int indice = buscarIndicePorId(idLibro);
         if (indice != -1) {
+            Libro libroRemovido = listaLibros.get(indice);
             listaLibros.remove(indice);
-            return true;
+            return libroRemovido;
         }
-        return false;
+        return null;
     }
 
-    public boolean eliminarPorNombre(String nombreLibro) {
+    public Libro eliminarPorNombre(String nombreLibro) {
         int indice = buscarIndicePorNombre(nombreLibro);
         if (indice != -1) {
+            Libro libroRemovido = listaLibros.get(indice);
             listaLibros.remove(indice);
-            return true;
+            return libroRemovido;
         }
-        return false;
+        return null;
     }
 
     private int buscarIndicePorId(int idLibro) {

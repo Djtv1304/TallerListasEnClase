@@ -20,6 +20,9 @@ public class TallerInterface extends JFrame {
     private JButton buscarLibroButton;
     private JTextArea textArea1;
     private JButton calcularElTotalDeButton;
+    private JTextField textFieldEditorial;
+    private JTextField textFieldVolumenLibro;
+    private JTextField textFieldNumeroEdicion;
     private BibliotecaController Biblioteca = new BibliotecaController();
     public TallerInterface() {
 
@@ -43,7 +46,7 @@ public class TallerInterface extends JFrame {
         agregarLibroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Libro L1 = new Libro(textFieldNombreLibro.getText(),"Editorial Ingresada","Volumen Ingresado",5, Integer.parseInt(textFieldNumPag.getText()));
+                Libro L1 = new Libro(textFieldNombreLibro.getText(),textFieldEditorial.getText(),textFieldVolumenLibro.getText(),Integer.parseInt(textFieldNumeroEdicion.getText()), Integer.parseInt(textFieldNumPag.getText()));
                 boolean status = Biblioteca.agregarLibro(L1);
                 if (status) {
                     JOptionPane.showMessageDialog(null,"Libro agregado correctamente");
@@ -56,9 +59,15 @@ public class TallerInterface extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!textFieldEliminarPorNombre.getText().equals("")) {
-                    boolean resultado = Biblioteca.eliminarPorNombre(textFieldEliminarPorNombre.getText());
-                    if (resultado) {
-                        JOptionPane.showMessageDialog(null,"Libro eliminado correctamente\n" +
+                    Libro resultado = Biblioteca.eliminarPorNombre(textFieldEliminarPorNombre.getText());
+                    if (resultado != null) {
+                        JOptionPane.showMessageDialog(null,"El siguiente libro ha eliminado correctamente\n" +
+                                "Nombre del libro: " + resultado.getNombre() + "\n"+
+                                "Editorial del libro: " + resultado.getEditorial() + "\n"+
+                                "Volumen del libro: " + resultado.getVolumen() + "\n"+
+                                "Numero de Edicion: " + resultado.getNumeroEdicion() + "\n"+
+                                "ID Libro: " + resultado.getIdLibro() + "\n"+
+                                "Numero de paginas: " + resultado.getNumeroPaginas() + "\n" +
                                 "Recuerde calcular nuevamente el numero total de paginas");
                     } else {
                         JOptionPane.showMessageDialog(null,"Ingrese un nombre valido");
@@ -66,9 +75,15 @@ public class TallerInterface extends JFrame {
                     textFieldEliminarPorNombre.setText("");
                     textFieldEliminarPorID.setText("");
                 } else {
-                    boolean resultado = Biblioteca.eliminarPorId(Integer.parseInt(textFieldEliminarPorID.getText()));
-                    if (resultado) {
-                        JOptionPane.showMessageDialog(null,"Libro eliminado correctamente\n" +
+                    Libro resultado = Biblioteca.eliminarPorId(Integer.parseInt(textFieldEliminarPorID.getText()));
+                    if (resultado != null) {
+                        JOptionPane.showMessageDialog(null,"El siguiente libro ha eliminado correctamente\n" +
+                                "Nombre del libro: " + resultado.getNombre() + "\n"+
+                                "Editorial del libro: " + resultado.getEditorial() + "\n"+
+                                "Volumen del libro: " + resultado.getVolumen() + "\n"+
+                                "Numero de Edicion: " + resultado.getNumeroEdicion() + "\n"+
+                                "ID Libro: " + resultado.getIdLibro() + "\n"+
+                                "Numero de paginas: " + resultado.getNumeroPaginas() + "\n" +
                                 "Recuerde calcular nuevamente el numero total de paginas");
                     } else {
                         JOptionPane.showMessageDialog(null,"Ingrese un ID valido");
